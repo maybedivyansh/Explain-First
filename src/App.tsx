@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { LandingPage } from './components/LandingPage';
-import { ConsentFlow } from './components/ConsentFlow';
-import { AdminDashboard } from './components/AdminDashboard';
+import { useState } from 'react';
+import ConsentFlow from './components/ConsentFlow';
 import { Home, FlaskConical, LayoutDashboard } from 'lucide-react';
 
+// Placeholder components for now
+const LandingPage = () => <div className="p-8 text-center">Landing Page Placeholder</div>;
+const AdminDashboard = () => <div className="p-8 text-center">Admin Dashboard Placeholder</div>;
+
 function App() {
-  const [activeTab, setActiveTab] = useState<'landing' | 'demo' | 'dashboard'>('landing');
+  const [activeTab, setActiveTab] = useState<'landing' | 'demo' | 'dashboard'>('demo');
 
   const tabs = [
     { id: 'landing', label: 'Overview', icon: Home },
@@ -14,15 +16,15 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary-blue rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">E</span>
               </div>
-              <span className="text-primary-navy font-semibold text-lg">ExplainFirst</span>
+              <span className="text-slate-900 font-semibold text-lg">ExplainFirst</span>
             </div>
 
             <div className="flex space-x-1">
@@ -31,10 +33,10 @@ function App() {
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
+                    onClick={() => setActiveTab(tab.id as 'landing' | 'demo' | 'dashboard')}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${activeTab === tab.id
-                        ? 'bg-indigo-50 text-primary-blue'
-                        : 'text-text-secondary hover:bg-slate-50'
+                      ? 'bg-indigo-50 text-indigo-600'
+                      : 'text-slate-500 hover:bg-slate-50'
                       }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -61,7 +63,7 @@ function App() {
         )}
       </main>
 
-      <footer className="bg-primary-navy text-slate-400 py-8 mt-24">
+      <footer className="bg-slate-900 text-slate-400 py-8 mt-auto">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm">
             ExplainFirst · Understanding before consent
